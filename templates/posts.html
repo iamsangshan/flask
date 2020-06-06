@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+    <title>
+        First Flask APP Posts
+    </title>
+{% endblock %}
+
+{% block body %} 
+    <h1>
+        Welcome, visitor, you are seeing Posts!
+    </h1>
+
+    {% for story in allstories %}
+        <h2>{{ story.title }}</h2>
+        <p1>{{ story.content}}</p1>
+    {% endfor %}
+
+{% endblock %}
