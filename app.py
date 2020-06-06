@@ -7,12 +7,19 @@ app = Flask(__name__)
 stories = [
     {
         'title' : 'Story 1',
-        'content' : 'Once upon a time...'
+        'content' : 'Once upon a time...',
+        'author' : 'Sangeetha'
     },
     {
         'title' : 'Story 2',
-        'content' : 'And they lived happily everafter...'
-    }
+        'content' : 'And they lived happily everafter...',
+        'author' : 'Mvr',
+     },
+
+     {
+        'title' : 'Story 3',
+        'content' : 'That was a bad story...',
+     },
 ]
 
 #add a URL to the app, currently localhost#

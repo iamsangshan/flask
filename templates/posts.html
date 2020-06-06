@@ -8,12 +8,19 @@
 
 {% block body %} 
     <h1>
-        Welcome, visitor, you are seeing Posts!
+        Welcome, visitor, you are seeing Posts!!!!
     </h1>
 
     {% for story in allstories %}
         <h2>{{ story.title }}</h2>
         <p1>{{ story.content}}</p1>
+
+        {% if story.author %}
+            <p1>By: {{story.author}}</p1>
+        {% else %}
+            <p1>By: Unknown</p1>
+        {% endif %}
+
     {% endfor %}
 
 {% endblock %}
