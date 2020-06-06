@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html>
+
+{% extends 'base.html' %}
+
+{% block head %} 
     <title>
         First Flask APP
     </title>
+{% endblock %}
 
-    <head>
-        <h1>
-            Welcome, visitor!
-        </h1>
-    </head>
-
-</html>
+{% block body %} 
+    <h1>
+        Welcome, visitor, you are seeing JINJA!
+    </h1>
+{% endblock %}
