@@ -16,6 +16,8 @@
     <form action='/posts' method='POST'>
         Title: <input type='text' name='title' id='title'>
         <br>
+        Author: <input type='text' name='author' id='author'>
+        <br>
         Post: <input type='text' name='content' id='content'>
         <br>
         <button type="submit" value="Submit">Post</button>
@@ -33,6 +35,13 @@
         {% else %}
             <p1>By: Unknown</p1>
         {% endif %}
+
+        <!-- Delete option -->
+        <br>
+        <a href='/posts/delete/{{story.id}}'>Delete</a>
+        <!-- Edit option -->
+        <a href='/posts/edit/{{story.id}}'>Edit</a>
+        <hr>
 
     {% endfor %}
 

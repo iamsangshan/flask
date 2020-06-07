@@ -62,9 +62,10 @@ def posts():
         #get the data
         new_title = request.form['title']
         new_content = request.form['content']
+        new_author = request.form['author']
 
         #model the data
-        new_post = BlogPost(title=new_title, content=new_content)
+        new_post = BlogPost(title=new_title, content=new_content, author=new_author)
         
         #add to DB
         db.session.add(new_post)
@@ -79,6 +80,32 @@ def posts():
     else:
         stories = BlogPost.query.all()
         return render_template('posts.html', allstories=stories)
+
+
+# Delete functionality
+@app.route('/posts/delete/<int:id>')
+def delete_post(id):
+    post = BlogPost.query.get(id)
+    db.session.delete(post)
+    db.session.commit()
+    return redirect('/posts')
+
+# Edit functionality
+@app.route('/posts/edit/<int:id>', methods=["POST", "GET"])
+def edit_post(id):
+    curr_post = BlogPost.query.get(id)
+    # When post is edited and saved
+    if request.method == 'POST':
+        curr_post.title = request.form['title']
+        curr_post.author = request.form['author']
+        curr_post.content = request.form['content']
+        db.session.commit()
+        return redirect('/posts')
+    # When post is being edited, redirect to edit page
+    else:
+        post=BlogPost.query.get(id)
+        return render_template('edit.html', post=curr_post)
+
 
 # if the app is running in shell command,
 # good practise to turn the debug on (dev mode)

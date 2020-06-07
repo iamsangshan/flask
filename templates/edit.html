@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+    <title>
+        Edit Flask APP Posts
+    </title>
+{% endblock %}
+
+{% block body %} 
+    <h1>
+        Welcome, edit your content here!
+    </h1>
+
+    <!-- Get the new blog content from user -->
+    <hr>
+    <form action='/posts/edit/{{post.id}}' method='POST'>
+        Title: <input type='text' name='title' id='title' value="{{post.title}}">
+        <br>
+        Author: <input type='text' name='author' id='author' value="{{post.author}}">
+        <br>
+        Post: <input type='text' name='content' id='content' value="{{post.content}}">
+        <br>
+        <button type="submit" value="Submit">Save</button>
+    </form>
+    <hr>
+
+{% endblock %}
