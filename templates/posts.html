@@ -8,13 +8,26 @@
 
 {% block body %} 
     <h1>
-        Welcome, visitor, you are seeing Posts!!!!
+        Welcome, post your content here!
     </h1>
 
-    {% for story in allstories %}
-        <h2>{{ story.title }}</h2>
-        <p1>{{ story.content}}</p1>
+    <!-- Get the new blog content from user -->
+    <hr>
+    <form action='/posts' method='POST'>
+        Title: <input type='text' name='title' id='title'>
+        <br>
+        Post: <input type='text' name='content' id='content'>
+        <br>
+        <button type="submit" value="Submit">Post</button>
+    </form>
+    <hr>
 
+    <!--- Display the existing blog posts -->
+    {% for story in allstories %}
+        <h1>{{ story.title }}</h1>
+        <h3><p1>{{ story.content}}</p1></h3>
+
+        <br>
         {% if story.author %}
             <p1>By: {{story.author}}</p1>
         {% else %}
