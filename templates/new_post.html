@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+    <title>
+       New Post
+    </title>
+{% endblock %}
+
+{% block body %} 
+    <h1>
+        Welcome, add your new post here!
+    </h1>
+
+    <!-- Get the new blog content from user -->
+    <hr>
+
+    <!-- Get the new blog content from user -->
+<hr>
+<form action='/posts/new' method='POST'>
+    <label for="title">Title</label>
+    <input class="form-control" id="title" name='title' type="text" placeholder="Enter a title" aria-label="title">
+    <br>
+    <label for="author">Author</label>
+    <input class="form-control" id="author" name='author' type="text" placeholder="Enter your name" aria-label="author">
+    <br>
+    <label for="content">Post</label>
+    <textarea class="form-control" id="content" name='content' rows="3" aria-label="content" placeholder="Enter your story..."></textarea>
+    <br>
+    <button class="btn btn-success" type="submit" value="Submit">Post</button>
+</form>
+
+{% endblock %}

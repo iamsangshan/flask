@@ -1,48 +1,41 @@
 {% extends 'base.html' %}
 
-{% block head %} 
-    <title>
-        First Flask APP Posts
-    </title>
+{% block head %}
+<title>
+    Blog posts
+</title>
 {% endblock %}
 
-{% block body %} 
-    <h1>
-        Welcome, post your content here!
+{% block body %}
+<br>
+<div>
+    <h1 style="display:inline">
+        Welcome, have a great day!
     </h1>
+    <a style="display:inline" class="btn btn-success float-right"  href="/posts/new">+ New Post</a>
+</div>
 
-    <!-- Get the new blog content from user -->
-    <hr>
-    <form action='/posts' method='POST'>
-        Title: <input type='text' name='title' id='title'>
-        <br>
-        Author: <input type='text' name='author' id='author'>
-        <br>
-        Post: <input type='text' name='content' id='content'>
-        <br>
-        <button type="submit" value="Submit">Post</button>
-    </form>
-    <hr>
+<hr>
 
-    <!--- Display the existing blog posts -->
-    {% for story in allstories %}
-        <h1>{{ story.title }}</h1>
-        <h3><p1>{{ story.content}}</p1></h3>
+<!--- Display the existing blog posts -->
+{% for story in allstories %}
+    <h1>{{ story.title }}</h1>
+{% if story.author %}
+    <small>Written by {{story.author}} on {{story.date_posted}}</p1></small>
+{% else %}
+    <p1>By: Unknown</p1>
+{% endif %}
+<br>
+<br>
+    <div style="white-space: pre-wrap;"><p1>{{ story.content}}</p1></div>
 
-        <br>
-        {% if story.author %}
-            <p1>By: {{story.author}}</p1>
-        {% else %}
-            <p1>By: Unknown</p1>
-        {% endif %}
+<br><br>
+<!-- Delete option -->
+<a class="btn btn-danger" href='/posts/delete/{{story.id}}'>Delete</a>
+<!-- Edit option -->
+<a class="btn btn-primary" href='/posts/edit/{{story.id}}'>Edit</a>
+<hr>
 
-        <!-- Delete option -->
-        <br>
-        <a href='/posts/delete/{{story.id}}'>Delete</a>
-        <!-- Edit option -->
-        <a href='/posts/edit/{{story.id}}'>Edit</a>
-        <hr>
-
-    {% endfor %}
+{% endfor %}
 
 {% endblock %}

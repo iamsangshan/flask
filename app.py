@@ -53,12 +53,11 @@ stories = [
 def hello() :
     return render_template('index.html')
 
-#pass the stories as a variable to the posts.html
-@app.route('/posts', methods=['GET', 'POST'])
+# create a new post
+@app.route('/posts/new', methods=['GET', 'POST'])
 def posts():
     # if user is posting something
     if request.method == 'POST':
-
         #get the data
         new_title = request.form['title']
         new_content = request.form['content']
@@ -75,11 +74,13 @@ def posts():
 
         #come back to the page
         return redirect('/posts')
-    
-    #if user is not posting anything, just display the current blog posts
     else:
-        stories = BlogPost.query.all()
-        return render_template('posts.html', allstories=stories)
+       return render_template('new_post.html')
+
+@app.route("/posts")
+def view_all_posts():
+    stories = BlogPost.query.all()
+    return render_template('posts.html', allstories=stories)
 
 
 # Delete functionality
